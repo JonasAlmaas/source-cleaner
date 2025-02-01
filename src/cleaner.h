@@ -4,6 +4,12 @@
 /* TODO: Is this enough? Should I use a heap allocation instead? */
 enum {MAX_FILE_SIZE=65536};
 
-extern int src_clean(char *buf, long fsz);
+enum line_ending {
+	LE_UNKNOWN=0,
+	LE_LF,
+	LE_CRLF,
+};
+
+extern int clean_str(char *buf, long fsz, enum line_ending desired_le);
 
 #endif /* CLEANER_H_INCLUDED */

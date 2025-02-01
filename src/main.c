@@ -30,7 +30,7 @@ int main(int argc, char **argv)
 	}
 
 	fread(buf, sizeof(char), fsz, fp);
-	status = src_clean(buf, fsz);
+	status = clean_str(buf, fsz, LE_UNKNOWN);
 
 	if (!dry_run) {
 		if (argc > 1) {
