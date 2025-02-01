@@ -1,4 +1,5 @@
 CC := "gcc"
+LD := "gcc"
 
 #### Project ####
 
@@ -12,7 +13,8 @@ INCLUDE_DIRS = \
 DEFINES =
 
 SOURCES := \
-	src/main.c
+	src/main.c \
+	src/cleaner.c
 
 OBJECTS := ${addprefix ${BUILDDIR}/, ${SOURCES:.c=.o}}
 DEPENDENCY_OBJECTS := ${OBJECTS:.o=.d}
@@ -31,15 +33,24 @@ CFLAGS = \
 	-Wswitch-default -Wpedantic \
 	-Wno-pointer-to-int-cast -Wno-int-to-pointer-cast
 
-.PHONY: all clean
+# Generate dependency information
+CFLAGS += -MMD -MP -MF"$(@:%.o=%.d)"
+
+LDFLAGS = \
+	-lc
+
+.PHONY: all test clean
 
 all: ${TARGET}
+
+test:
+	${MAKE} -C test test
 
 clean:
 	@rm -rf ${BUILDDIR}/
 
 ${TARGET}: ${OBJECTS} | ${BUILDDIR}
-	${CC} -o $@ $^
+	${LD} ${LDFLAGS} -o $@ $^
 
 ${BUILDDIR}/%.o: %.c Makefile | ${BUILDDIR}
 	@mkdir -p ${dir $@}
