@@ -22,7 +22,7 @@ TEST(add_missing_new_line_eof_works)
 {
 	char buf[MAX_FILE_SIZE] = "\nA";
 	clean_str(buf, strlen(buf), LE_UNKNOWN);
-	ASSERT(!strcmp("A\n\n", buf));
+	ASSERT(!strcmp("A\n", buf));
 }
 
 TEST(trim_trailing_new_line_eof_works)
