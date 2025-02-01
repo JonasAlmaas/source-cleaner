@@ -19,3 +19,8 @@ tab_width = 8
 
 [*.md]
 trim_trailing_whitespace = false
+
+[*.tst]
+end_of_line = lf
+trim_trailing_whitespace = false
+insert_final_newline = false

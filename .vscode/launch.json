@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/build/src-cleaner",
-            "args": ["${workspaceFolder}/data/test1.c"],
+            "args": ["${workspaceFolder}/data/test1.tst"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/build",
             "environment": [],
