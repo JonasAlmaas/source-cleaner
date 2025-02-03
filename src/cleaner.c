@@ -59,7 +59,7 @@ extern int clean_str(char *buf, long fsz, enum line_ending desired_le)
 			++i;
 		}
 		if (i<fsz && buf[i]=='\n') {
-			le = buf[i-1] == '\r' ? LE_CRLF : LE_LF;
+			le = buf[i-1] == '\r' ? LE_CRLF : LE_LF; /* ISSUE: Risk of accessing buf[-1] */
 		}
 	}
 
