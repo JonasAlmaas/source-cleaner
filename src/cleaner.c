@@ -52,14 +52,14 @@ extern int clean_str(char *buf, long fsz, enum line_ending desired_le)
 	int i;
 	enum line_ending le = desired_le;
 
-	/* Figure out what line ending the file uses */
+	/* Identify line ending */
 	if (desired_le == LE_UNKNOWN) {
 		i=0;
 		while (i<fsz && buf[i]!='\n') {
 			++i;
 		}
 		if (i<fsz && buf[i]=='\n') {
-			le = buf[i-1] == '\r' ? LE_CRLF : LE_LF;
+			le = (i>0 && buf[i-1]=='\r') ? LE_CRLF : LE_LF;
 		}
 	}
 
